@@ -1,0 +1,97 @@
+EMPLOYEE:
+INSERT INTO Employee(Employee_id,
+Name,
+Designation,
+Joining_date,
+Address,
+DOB,
+Contact_no,
+Age,
+Salary,
+Login_id,
+Login_pass,
+User_name)
+VALUES 
+('E_001','ABCD','Employee',TO_DATE('12-1-2021','DD-MM-YYYY'),'DHAKA',
+TO_DATE('12-1-1987','DD-MM-YYYY'),'01956171931',35,20000,'abcd','abcd123','abcd')
+
+
+Issue_From:
+INSERT INTO Issue_From
+VALUES 
+('E_001','I_001');
+
+Food_Menu:
+INSERT INTO Food_Menu(
+    Food_id,
+	Name,
+	Price,
+	Availibility,
+	Food_unit,
+	Required_raw_material
+)
+VALUES 
+('F_001','Khichuri',40,'YES',5,'A- 1kg, B- 1kg, C- 2 pieces');
+
+
+Inventory:
+INSERT INTO Inventory(
+    Inventory_id,
+	Item_Name,
+	Buying_date,
+	Buying_quantity,
+	Buying_price,
+	Issuing_date,
+	Issued_quantity,
+	Remaining_quantity
+)
+VALUES 
+('I_001','Rice',TO_DATE('6-3-2022','DD-MM-YYYY'),10,5000,
+TO_DATE('7-3-2022','DD-MM-YYYY'),2,8);
+
+
+Customer:
+INSERT INTO Customer(
+    Customer_id,
+	Name,
+	Address,
+	Contact_no,
+	Login_id,
+	Login_pass,
+	User_name)
+VALUES 
+('C_001','CDE','WWW','01857256285','SSS','RTR','CCC');
+
+INSERT INTO Customer(
+    Customer_id,
+	Name,
+	Address,
+	Contact_no,
+	Login_id,
+	Login_pass,
+	User_name)
+VALUES 
+('C_002','Sevas','Dhaka','01657525627','SSTS','RTR','MMM');
+
+
+Orders:
+INSERT INTO Orders(
+    Order_id,
+	Quantity,
+	Bill,
+	Ordering_date,
+	Employee_id,
+	Customer_id
+)
+VALUES 
+('O_001',2,100,TO_DATE('6-3-2022','DD-MM-YYYY'),'E_001','C_001');
+
+Select_From:
+INSERT INTO Select_From
+VALUES 
+('F_001','O_001');
+
+Prepared_From:
+INSERT INTO Prepared_From
+VALUES 
+('F_001','I_001');

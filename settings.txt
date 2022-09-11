@@ -1,0 +1,11 @@
+Oracle setup
+---------------
+
+Application express username and password --
+Application username - root
+Application password - root
+Database username - mcafe
+
+SQLDeveloper Setup --
+username - mcafe
+password - root

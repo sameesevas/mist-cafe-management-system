@@ -1,0 +1,5 @@
+1. SELECT CUSTOMER_ID || ' Ordered ' ||'Order No ' || ORDER_ID || ' of ' ||QUANTITY || ' quantity.' from ORDERS;
+2. SELECT NAME, ADDRESS FROM CUSTOMER WHERE ADDRESS='Dhaka';
+3. SELECT CUSTOMER_ID || ' Has total bill of ' ||BILL || 'tk.' from ORDERS;
+4.SELECT * FROM EMPLOYEE;
+5.SELECT Name "Food Name", Price, Availibility FROM Food_Menu

@@ -1,0 +1,8 @@
+DROP TABLE EMPLOYEE;
+DROP TABLE Food_Menu;
+DROP TABLE Inventory;
+DROP TABLE Customer;
+DROP TABLE Orders;
+DROP TABLE Issue_From;
+DROP TABLE Select_From;
+DROP TABLE Prepared_From;

@@ -1,0 +1,10 @@
+1.SELECT E.EMPLOYEE_ID || ' will issue ' || ITEM_NAME || ' of ' || Issued_quantity || ' quantity today.' 
+FROM EMPLOYEE E,INVENTORY I,ISSUE_FROM ISU 
+WHERE E.EMPLOYEE_ID = ISU.EMPLOYEE_ID AND I.INVENTORY_ID=ISU.INVENTORY_ID;
+
+2.SELECT Customer.NAME || ' has ordered ' || Orders.Quantity || ' ' || Food_Menu.NAME "Order Details"  FROM Customer,Orders,Food_Menu, Select_From
+WHERE Customer.Customer_id=Orders.Customer_id AND
+Food_Menu.Food_id = Select_From.Food_id AND
+Select_From.Order_id = Orders.Order_id;
+
+3. SELECT SUM(BILL) "Total bill" from Orders;

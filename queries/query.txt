@@ -1,0 +1,141 @@
+VIEW:
+
+Simple:
+1.
+CREATE VIEW food MENU
+            (F_ID, NAME, PRICE) AS
+SELECT f_id,name,price FROM food MENUE; 
+
+2.
+CREATE VIEW EMP_LIST
+            (E_ID, NAME,DESIGNATION, ADDRESS, PHONE NO) AS
+SELECT e_id, name, address, CONTACT NO FROM employee; 
+
+3.
+CREATE VIEW ORDER_DETAIL
+            (ORDER_ID, ORDER_QUANTITY) AS
+SELECT O_id, QUANTITY FROM ORDERs; 
+
+Complex:
+4.
+CREATE VIEW bill_detail
+            ( BILL,DATE) AS
+SELECT o.o_id, SUM (f.price * o.quantity) FROM orders o, food menue f, select from s 
+       WHERE o.o_id = f.f_id AND o.o_id = e.e_id GROUP BY c.c_id;
+
+
+
+
+
+
+QUERY:
+
+1.Show menu of the restaurant.
+SELECT f_id, name, price FROM food menue; 
+
+2.Show total salary of all employees.
+SELECT SUM(salary) FROM employees;
+
+
+
+
+
+
+
+### whenever any udate on inventory, trigger
+create trigger update_inventory 
+instead of update on inventory
+referencing old table as otab
+referencing new table as ntab
+Declare @today DATETIME = SYSDATETIME()
+for each row
+    insert into update_inventory
+    select(@today, otab.id, otab.item name, otab.buying date, otab.buying quantity, otab.buying price, otab.issuing date,otab.issuing quantity,otab.remainig quantity
+    from otab
+    inner join ntab
+    on otab.id = ntab.id)
+
+
+
+## order not allowed if food menue is not available
+CREATE OR REPLACE TRIGGER update_food menue
+before UPDATE 
+ON food menue
+FOR EACH ROW
+WHEN ( old.availability< 0 ) 
+DECLARE 
+OVERDRAFT_ERROR EXCEPTION; 
+BEGIN 
+RAISE OVERDRAFT_ERROR; 
+EXCEPTION 
+WHEN OVERDRAFT_ERROR 
+THEN
+RAISE_APPLICATION_ERROR(-20001,'ORDER IS NOT 
+ALLOWED' ); 
+END;
+
+
+## creating sequence for order
+CREATE SEQUENCE order_Sequence 
+START WITH 01 
+INCREMENT BY 1 
+NOCACHE
+NOCYCLE;
+
+
+
+
+
+
+
+##record of customer
+DECLARE customer_rec customer%rowtype; 
+BEGIN 
+SELECT * into customer_rec FROM customer WHERE C_id
+= c_001;
+dbms_output.put_line('Customer ID: ' || customer_rec.C_id); 
+dbms_output.put_line('Customer Name: ' || 
+customer_rec.name); 
+END; 
+
+
+##record of food order
+DECLARE orders_rec orders%rowtype; 
+BEGIN 
+SELECT * into orders_rec FROM orders WHERE o_id
+= o_001;
+dbms_output.put_line('order ID: ' || orders_rec.o_id); 
+dbms_output.put_line('order quantity: ' || 
+orders_rec.quantity); 
+END; 
+
+
+## order confirmation
+DECLARE
+availability(8);
+outputString varchar2(100);
+BEGIN
+SELECT availability FROM FOOD menue WHERE Food_id = 'F_001' ;
+if availability <0 THEN
+outputString := 'your ordered menue is not available' ;
+ELSE
+IF availability>0 and THEN
+outputString := 'your order has been placed' ;
+END IF;
+dbms_output.put_line(outputString);
+END;
+
+##
+
+trigger:
+CREATE or REPLACE TRIGGER inventory_trigger
+BEFORE UPDATE OF buying quantity 
+ON inventory 
+FOR EACH ROW
+WHEN (New.AMOUNT < 20) 
+BEGIN 
+dbms_output.put_line('trigger called');
+INSERT INTO Product_Restock VALUES (:old.product_id, 
+:old.product_name, :old.supplier_name, :old.unit_price, 
+:new.amount); 
+END;

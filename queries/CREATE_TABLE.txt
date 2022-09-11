@@ -1,0 +1,122 @@
+CREATE TABLE Employee
+(
+	Employee_id VARCHAR2(20),
+	Name VARCHAR2(40),
+	Designation VARCHAR2(20),
+	Joining_date DATE,
+	Address VARCHAR2(50),
+	DOB DATE,
+	Contact_no VARCHAR2(40),
+	Age NUMBER(3,0),
+	Salary NUMBER(7,0),
+        Login_id VARCHAR2(40),
+        Login_pass VARCHAR2(40),
+        User_name VARCHAR2(40),
+        Manager_id VARCHAR2(20),
+        CONSTRAINT Employee_Employee_id_pk PRIMARY KEY(Employee_id)
+);
+
+
+CREATE TABLE Food_Menu
+(
+	Food_id VARCHAR2(20),
+	Name VARCHAR2(40),
+	Price NUMBER(4,0),
+	Availibility VARCHAR2(10),
+	Food_unit VARCHAR2(20),
+	Required_raw_material VARCHAR2(100),
+    CONSTRAINT Food_Menu_Food_id_pk PRIMARY KEY(Food_id)
+);
+
+
+CREATE TABLE Inventory
+(
+    Inventory_id VARCHAR2(20),
+    Item_Name VARCHAR2(40),
+    Buying_date DATE,
+    Buying_quantity NUMBER(5,0),
+    Buying_price NUMBER(6,0),
+    Issuing_date DATE,
+    Issued_quantity NUMBER(5,0),
+    Remaining_quantity NUMBER(5,0),	
+    CONSTRAINT Inventory_Inventory_id_pk PRIMARY KEY(Inventory_id)
+);
+
+
+CREATE TABLE Customer
+(
+	Customer_id VARCHAR2(20),
+	Name VARCHAR2(40),
+	Address VARCHAR2(60),
+	Contact_no VARCHAR2(20),
+	Login_id VARCHAR2(40),
+	Login_pass VARCHAR2(30),
+	User_name VARCHAR2(20),
+    CONSTRAINT Customer_Customer_id_pk PRIMARY KEY(Customer_id)
+);
+
+
+
+
+
+CREATE TABLE Orders
+(
+	Order_id VARCHAR2(20),
+	Quantity NUMBER(5,0),
+	Bill NUMBER(5,0),
+	Ordering_Date DATE,
+	Employee_id VARCHAR2(20),
+	Customer_id VARCHAR2(20),
+    CONSTRAINT Orders_Order_id_pk PRIMARY KEY(Order_id),
+	CONSTRAINT fk_Customer
+    FOREIGN KEY (Customer_id)
+    REFERENCES Customer(Customer_id),
+	CONSTRAINT fk_Employee
+    FOREIGN KEY (Employee_id)
+    REFERENCES Employee(Employee_id)
+);
+
+
+CREATE TABLE Issue_From
+(
+	Employee_id VARCHAR2(20),
+	Inventory_id VARCHAR2(20),
+	CONSTRAINT fk_Employee_Issue_From
+    FOREIGN KEY (Employee_id)
+    REFERENCES Employee(Employee_id),
+	CONSTRAINT fk_Inventory
+    FOREIGN KEY (Inventory_id)
+    REFERENCES Inventory(Inventory_id)
+);  
+
+
+
+CREATE TABLE Select_From
+(
+	Food_id VARCHAR2(20),
+	Order_id VARCHAR2(20),
+	CONSTRAINT fk_Food_Menu
+    FOREIGN KEY (Food_id)
+    REFERENCES Food_Menu(Food_id),
+	CONSTRAINT fk_Orders
+    FOREIGN KEY (Order_id)
+    REFERENCES Orders(Order_id)
+);
+
+CREATE TABLE Prepared_From
+(
+	Food_id VARCHAR2(20),
+	Inventory_id VARCHAR2(20),
+	CONSTRAINT fk_Food_Menu_Prepared_From
+    FOREIGN KEY (Food_id)
+    REFERENCES Food_Menu(Food_id),
+	CONSTRAINT fk_Inventory_Prepared_From
+    FOREIGN KEY (Inventory_id)
+    REFERENCES Inventory(Inventory_id)
+);
+
+
+
+
+
+  
